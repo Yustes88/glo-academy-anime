@@ -1,5 +1,9 @@
-const input = document.querySelector('#search-input')
+const input = () => {
+    const input = document.querySelector('#search-input')
+    
+    input.addEventListener('input', () => {
+        console.log(input.value)
+    })
+}
 
-input.addEventListener('input', () => {
-    console.log(input.value)
-})
+input()

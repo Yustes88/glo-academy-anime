@@ -18,7 +18,7 @@ const categoriesData = () => {
         genres.forEach((genre) => {
           const productBlock = document.createElement("div");
           const listBlock = document.createElement("div");
-          const list = array.filter((item) => item.ganre === genre);
+          const list = array.filter((item) => item.tags.includes(genre));
     
           productBlock.classList.add('mb-5')
           listBlock.classList.add("row");
@@ -103,13 +103,19 @@ const categoriesData = () => {
         .then((response) => response.json())
         .then((data) => {
           const genres = new Set();
+          const ganreParams = new URLSearchParams(window.location.search).get('ganre')
           
           data.anime.forEach((item) => {
             genres.add(item.ganre);
           });
           
           renderTopAnime(data.anime.sort((a, b) => b.views - a.views).slice(0, 5));
-          renderAnimeList(data.anime, genres);
+          if(ganreParams) {
+            renderAnimeList(data.anime, [ganreParams]);
+          } else {
+
+            renderAnimeList(data.anime, genres);
+          }
           renderGanreList(genres)
         });
 }

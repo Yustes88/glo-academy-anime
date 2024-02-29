@@ -1,4 +1,5 @@
 const categoriesData = () => {
+  const preloader = document.querySelector(".preloder");
 
     const renderGanreList = (genres) => {
         const dropDownBlock = document.querySelector('.header__menu .dropdown')
@@ -77,6 +78,9 @@ const categoriesData = () => {
             elem.style.backgroundImage = "url(" + elem.dataset.setbg + ")";
           });
         });
+        setTimeout(function () {
+          preloader.classList.remove("active");
+        }, 500);
       };
     
       const renderTopAnime = (array) => {
